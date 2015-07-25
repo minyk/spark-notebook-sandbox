@@ -5,6 +5,10 @@ Sandbox for Spark-Notebook
 
 Vagrant project to spin up a cluster of 1 virtual machine with Hadoop v2.6.0, Spark v1.4.1 and Spark-Notebook 0.6.0
 
+* [Hadoop](http://hadoop.apache.org)
+* [Spark](http://spark.apache.org)
+* [Spark-Notebook](https://github.com/andypetrella/spark-notebook)
+
 # Getting Started
 
 1. [Download and install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
