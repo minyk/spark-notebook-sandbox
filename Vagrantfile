@@ -41,7 +41,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				s.args = "-s 1 -t #{numNodes}"
 			end
 			node.vm.provision "shell", path: "scripts/setup-flume.sh"
-			node.vm.provision "shell", path: "scripts/setup-spark-notebook.sh"
+			if i == 1
+    			node.vm.provision "shell", path: "scripts/setup-spark-notebook.sh"
+    		end
 			if i == 1
 				node.vm.provision "shell", path: "scripts/init-start-all-services.sh"
 			end
