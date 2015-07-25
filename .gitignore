@@ -1,0 +1,7 @@
+/.vagrant
+/resources/jdk-7u51-linux-x64.gz
+/resources/spark-*.tgz
+/resources/hadoop-*.tar.gz
+/resources/apache-flume-*
+.idea
+*.iml
