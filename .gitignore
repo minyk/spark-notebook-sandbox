@@ -1,7 +1,9 @@
 /.vagrant
-/resources/jdk-7u51-linux-x64.gz
+/resources/jdk-*.gz
 /resources/spark-*.tgz
 /resources/hadoop-*.tar.gz
 /resources/apache-flume-*
+/resources/*.tar.gz
 .idea
 *.iml
+spark-training
