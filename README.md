@@ -32,6 +32,76 @@ Some gotcha's.
 
 If you have the resources (CPU + Disk Space + Memory), you may modify Vagrantfile to have even more HDFS DataNodes, YARN NodeManagers, and Spark slaves. Just find the line that says "numNodes = 4" in Vagrantfile and increase that number. The scripts should dynamically provision the additional slaves for you.
 
+# How to Change Stack Versions
+
+Edit variables in `scripts/common.sh`.
+
+## OS
+
+`spark-notebook-sandbox` uses CentOS 6.5 for default. It can be changed to other version/distribution. Just edit the `Vagrantfile`'s following lines:
+
+```
+    node.vm.box = "centos65"
+    node.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
+```
+
+## java
+
+Default settings use `jdk-7u71-linux-x64.tar.gz` or `java-1.7.0-openjdk.x86_64`. Edit following lines from `scripts/common.sh` for oracle JDK:
+
+```
+#java
+JAVA_ARCHIVE=jdk-7u71-linux-x64.tar.gz
+```
+
+In case of OpenJDK, edit `scripts/setup-java.sh`:
+
+```bash
+function installRemoteJava {
+	echo "install open jdk"
+	yum install -y java-1.7.0-openjdk.x86_64
+}
+```
+
+## hadoop
+
+Hadoop version is described in `scripts/common.sh`: 
+
+```bash
+HADOOP_VERSION=2.6.0
+HADOOP_ARCHIVE=hadoop-${HADOOP_VERSION}.tar.gz
+HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/${HADOOP_ARCHIVE}
+```
+
+To build the sandbox, Make sure `HADOOP_MIRROR_DOWNLOAD` is available for downloading.
+
+## Spark
+
+Spark version is described in `scripts/common.sh`: 
+
+```bash
+SPARK_VERSION=1.4.1
+SPARK_ARCHIVE=spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
+SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}
+```
+
+To build the sandbox, Make sure `SPARK_MIRROR_DOWNLOAD` is available for downloading.
+
+## Spark-Notebook
+
+spark-notebook version is described in `scripts/common.sh`: 
+
+```bash
+SPARKNOTEBOOK_VERSION=0.6.0
+SCALA_VERSION=2.10.4
+SPARKNOTEBOOK_NAME=spark-notebook-${SPARKNOTEBOOK_VERSION}-scala-${SCALA_VERSION}-spark-${SPARK_VERSION}-hadoop-${HADOOP_VERSION}-with-hive-with-parquet
+SPARKNOTEBOOK_ARCHIVE=${SPARKNOTEBOOK_NAME}.tgz
+SPARKNOTEBOOK_MIRROR_DOWNLOAD=https://s3.eu-central-1.amazonaws.com/spark-notebook/tgz/${SPARKNOTEBOOK_ARCHIVE}
+```
+
+Spark-Notebook has many archive for various settings. You may find the exact setting for your purpose on the http://spark-notebook.io `tgz` section. Find the notebook, scala, spark, hadoop version you want to install.
+
+
 # Make the VMs setup faster
 You can make the VM setup even faster if you pre-download the Hadoop, Spark, and Oracle JDK into the /resources directory.
 
