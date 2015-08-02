@@ -29,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 					s.args = "-s 1 -t #{numNodes}"
 				end
 			end
+			node.vm.provision "shell", path: "scripts/setup-basic-packages.sh"
 			node.vm.provision "shell", path: "scripts/setup-java.sh"
 			node.vm.provision "shell", path: "scripts/setup-hadoop.sh"
 			node.vm.provision "shell" do |s|
