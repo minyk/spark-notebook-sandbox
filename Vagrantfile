@@ -12,11 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			  v.name = "node#{i}"
 			  v.customize ["modifyvm", :id, "--memory", "4096"]
 			end
-			if i < 10
-				node.vm.network :private_network, ip: "10.10.10.10#{i}"
-			else
-				node.vm.network :private_network, ip: "10.10.10.1#{i}"
-			end
+
+			node.vm.network :private_network, ip: "10.10.10.1%02d" % i
 			node.vm.hostname = "node#{i}.example.com"
 			node.vm.provision "shell", path: "scripts/setup-centos.sh"
 			node.vm.provision "shell" do |s|
