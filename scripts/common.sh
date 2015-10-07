@@ -5,13 +5,13 @@ JAVA_ARCHIVE=jdk-7u71-linux-x64.tar.gz
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
-HADOOP_VERSION=2.6.0
+HADOOP_VERSION=2.7.1
 HADOOP_ARCHIVE=hadoop-${HADOOP_VERSION}.tar.gz
 HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/${HADOOP_ARCHIVE}
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 
 #spark
-SPARK_VERSION=1.4.1
+SPARK_VERSION=1.5.0
 SPARK_ARCHIVE=spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
 SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}
 SPARK_RES_DIR=/vagrant/resources/spark
@@ -32,7 +32,7 @@ FLUME_HOME=/usr/local/flume
 FLUME_CONF=${FLUME_HOME}/conf
 
 #spark-notebook
-SPARKNOTEBOOK_VERSION=0.6.0
+SPARKNOTEBOOK_VERSION=0.6.1
 SCALA_VERSION=2.10.4
 SPARKNOTEBOOK_NAME=spark-notebook-${SPARKNOTEBOOK_VERSION}-scala-${SCALA_VERSION}-spark-${SPARK_VERSION}-hadoop-${HADOOP_VERSION}-with-hive-with-parquet
 SPARKNOTEBOOK_ARCHIVE=${SPARKNOTEBOOK_NAME}.tgz

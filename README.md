@@ -3,7 +3,7 @@ Sandbox for Spark-Notebook
 
 # Introduction
 
-Vagrant project to spin up a cluster of 1 virtual machine with Hadoop v2.6.0, Spark v1.4.1 and Spark-Notebook 0.6.0
+Vagrant project to spin up a cluster of 1 virtual machine with Hadoop v2.7.1, Spark v1.5.0 and Spark-Notebook 0.6.1
 
 * [Hadoop](http://hadoop.apache.org)
 * [Spark](http://spark.apache.org)
@@ -68,7 +68,7 @@ function installRemoteJava {
 Hadoop version is described in `scripts/common.sh`: 
 
 ```bash
-HADOOP_VERSION=2.6.0
+HADOOP_VERSION=2.7.1
 HADOOP_ARCHIVE=hadoop-${HADOOP_VERSION}.tar.gz
 HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/${HADOOP_ARCHIVE}
 ```
@@ -80,7 +80,7 @@ To build the sandbox, Make sure `HADOOP_MIRROR_DOWNLOAD` is available for downlo
 Spark version is described in `scripts/common.sh`: 
 
 ```bash
-SPARK_VERSION=1.4.1
+SPARK_VERSION=1.5.0
 SPARK_ARCHIVE=spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
 SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}
 ```
@@ -92,7 +92,7 @@ To build the sandbox, Make sure `SPARK_MIRROR_DOWNLOAD` is available for downloa
 spark-notebook version is described in `scripts/common.sh`: 
 
 ```bash
-SPARKNOTEBOOK_VERSION=0.6.0
+SPARKNOTEBOOK_VERSION=0.6.1
 SCALA_VERSION=2.10.4
 SPARKNOTEBOOK_NAME=spark-notebook-${SPARKNOTEBOOK_VERSION}-scala-${SCALA_VERSION}-spark-${SPARK_VERSION}-hadoop-${HADOOP_VERSION}-with-hive-with-parquet
 SPARKNOTEBOOK_ARCHIVE=${SPARKNOTEBOOK_NAME}.tgz
@@ -105,10 +105,10 @@ Spark-Notebook has many archive for various settings. You may find the exact set
 # Make the VMs setup faster
 You can make the VM setup even faster if you pre-download the Hadoop, Spark, and Oracle JDK into the /resources directory.
 
-1. /resources/hadoop-2.6.0.tar.gz
-2. /resources/spark-1.4.1-bin-hadoop2.tgz
+1. /resources/hadoop-2.7.1.tar.gz
+2. /resources/spark-1.5.0-bin-hadoop2.6.tgz
 3. /resources/jdk-7u51-linux-x64.gz
-4. /resources/spark-notebook-0.6.0..tgz
+4. /resources/spark-notebook-0.6.1.tgz
 
 The setup script will automatically detect if these files (with precisely the same names) exist and use them instead. If you are using slightly different versions, you will have to modify the script accordingly.
 
