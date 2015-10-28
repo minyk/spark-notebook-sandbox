@@ -1,9 +1,6 @@
 /.vagrant
-/resources/jdk-*.gz
-/resources/spark-*.tgz
-/resources/hadoop-*.tar.gz
-/resources/apache-flume-*
-/resources/*.tar.gz
+/resources/*.gz
+/resources/*.tgz
 .idea
 *.iml
 spark-training

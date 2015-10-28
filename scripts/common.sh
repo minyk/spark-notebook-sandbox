@@ -31,6 +31,24 @@ FLUME_RES_DIR=/vagrant/resources/flume
 FLUME_HOME=/usr/local/flume
 FLUME_CONF=${FLUME_HOME}/conf
 
+#Kafka
+KAFKA_VERSION=0.8.2.2
+KAFKA_NAME=kafka_2.10-${KAFKA_VERSION}
+KAFKA_ARCHIVE=${KAFKA_NAME}.tgz
+KAFKA_MIRROR_DOWNLOAD=http://www.apache.org/dist/kafka/${KAFKA_VERSION}/${KAFKA_ARCHIVE}
+KAFKA_RES_DIR=/vagrant/resources/kafka
+KAFKA_HOME=/usr/local/kafka
+KAFKA_CONF=${KAFKA_HOME}/conf
+
+#Cassandra
+CASSANDRA_VERSION=2.1.10
+CASSANDRA_NAME=apache-cassandra-${CASSANDRA_VERSION}-bin
+CASSANDRA_ARCHIVE=${CASSANDRA_NAME}.tar.gz
+CASSANDRA_MIRROT_DOWNLOAD=http://www.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${CASSANDRA_ARCHIVE}
+CASSANDRA_RES_DIR=/vagrant/resources/cassandra
+CASSANDRA_HOME=/usr/local/cassandra
+CASSANDRA_CONF=${CASSANDRA_HOME}/conf
+
 #spark-notebook
 SPARKNOTEBOOK_VERSION=0.6.1
 SCALA_VERSION=2.10.4
