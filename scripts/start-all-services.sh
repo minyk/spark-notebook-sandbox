@@ -29,35 +29,76 @@ source /etc/profile.d/hadoop.sh
 source /etc/profile.d/spark.sh
 source /etc/profile.d/spark-notebook.sh
 
-start() {
+function start_hdfs() {
 	$HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
 	$HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
 	echo "started hdfs"
-#	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
-#	$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager
-#	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR
-#	$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
-#	echo "started yarn"
+}
+
+function stop_hdfs() {
+	$HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs stop namenode
+	$HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs stop datanode
+	echo "stopped hdfs"
+}
+
+function start_yarn() {
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh start proxyserver --config $HADOOP_CONF_DIR
+	$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
+	echo "started yarn"
+}
+
+function stop_yarn() {
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop resourcemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR stop nodemanager
+	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh stop proxyserver --config $HADOOP_CONF_DIR
+	$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh stop historyserver --config $HADOOP_CONF_DIR
+	echo "stopped yarn"
+}
+
+function start_spark() {
 	$SPARK_HOME/sbin/start-all.sh
 	$SPARK_HOME/sbin/start-history-server.sh
 	echo "started spark"
+}
+
+function stop_spark() {
+	$SPARK_HOME/sbin/stop-all.sh
+	$SPARK_HOME/sbin/stop-history-server.sh
+	echo "stopped spark"
+}
+
+function start_sparknotebook() {
 	$SPARKNOTEBOOK_HOME/start-spark-notebook.sh
 	echo "started spark-notebook"
+}
+
+function stop_sparknotebook() {
+    pkill -pidfile /usr/local/spark-notebook/RUNNING_PID
+}
+
+function startKafka {
+    EXEC_PATH=${KAFKA_HOME}/bin
+    ZOOKEEPER_EXEC_PATH=${EXEC_PATH}/zookeeper-server-start.sh
+    KAFKA_EXEC_PATH=${EXEC_PATH}/kafka-server-start.sh
+    nohup $ZOOKEEPER_EXEC_PATH $KAFKA_CONF/zookeeper.properties > $LOG_FILE 2>&1 < /dev/null & "'echo $! '"> $PIDFILE
+    nohup $KAFKA_EXEC_PATH $KAFKA_CONF/server.properties > $LOG_FILE 2>&1 < /dev/null & "'echo $! '"> $PIDFILE
+}
+
+start() {
+    start_hdfs
+    #start_yarn
+    start_spark
+    start_sparknotebook
 	return 0
 }
 
 stop() {
-	$HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs stop namenode
-	$HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs stop datanode
-	echo "stopped hdfs"
-#	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop resourcemanager
-#	$HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR stop nodemanager
-#	$HADOOP_YARN_HOME/sbin/yarn-daemon.sh stop proxyserver --config $HADOOP_CONF_DIR
-#	$HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh stop historyserver --config $HADOOP_CONF_DIR
-#	echo "stopped yarn"
-	$SPARK_HOME/sbin/stop-all.sh
-	$SPARK_HOME/sbin/stop-history-server.sh
-	echo "stopped spark"
+    stop_sparknotebook
+    stop_spark
+    #stop_yarn
+    stop_hdfs
 	return 0
 }
 

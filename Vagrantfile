@@ -43,6 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			if i == 1
     			node.vm.provision "shell", path: "scripts/setup-spark-notebook.sh"
     		end
+			node.vm.provision "shell", path: "scripts/setup-kafka.sh"
 			if i == 1
 				node.vm.provision "shell", path: "scripts/init-start-all-services.sh"
 			end
