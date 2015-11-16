@@ -15,7 +15,8 @@ function installRemoteJava {
 function setupJava {
 	echo "setting up java"
 	if resourceExists $JAVA_ARCHIVE; then
-		ln -s /usr/local/jdk1.7.0_71 /usr/local/java
+                chown -R root:root /usr/local/${JAVA_HOME}
+		ln -s /usr/local/${JAVA_HOME} /usr/local/java
 	else
 		ln -s /usr/lib/jvm/jre /usr/local/java
 	fi
@@ -24,7 +25,7 @@ function setupJava {
 function setupEnvVars {
 	echo "creating java environment variables"
 	echo export JAVA_HOME=/usr/local/java >> /etc/profile.d/java.sh
-	echo export PATH=\${JAVA_HOME}/bin:\${PATH} >> /etc/profile.d/java.sh
+	echo export PATH=/usr/local/${JAVA_HOME}/bin:\${PATH} >> /etc/profile.d/java.sh
 }
 
 function installJava {

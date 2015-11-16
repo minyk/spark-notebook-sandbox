@@ -1,7 +1,11 @@
 #!/bin/bash
 
 #java
-JAVA_ARCHIVE=jdk-7u71-linux-x64.tar.gz
+JAVA_VERSION="7"
+JAVA_UPDATE="79"
+JAVA_ARCHIVE=jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz
+JAVA_HOME="jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}"
+
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
@@ -11,7 +15,7 @@ HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOO
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 
 #spark
-SPARK_VERSION=1.5.0
+SPARK_VERSION=1.5.1
 SPARK_ARCHIVE=spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
 SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}
 SPARK_RES_DIR=/vagrant/resources/spark

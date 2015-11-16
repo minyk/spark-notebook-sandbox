@@ -37,6 +37,7 @@ function installHadoop {
 	else
 		installRemoteHadoop
 	fi
+        chown -R root:root /usr/local/hadoop-${HADOOP_VERSION}
 	ln -s /usr/local/hadoop-${HADOOP_VERSION} /usr/local/hadoop
 }
 
