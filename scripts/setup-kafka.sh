@@ -15,7 +15,10 @@ function installRemoteKafka {
 
 function setupKafka {
 	echo "setup kafka"
-	cp -f /vagrant/resources/kafka/a /usr/local/kafka/conf
+	cp -f /vagrant/resources/kafka/server.properties /usr/local/kafka/config
+	cp -f /vagrant/resources/kafka/zookeeper.properties /usr/local/kafka/config
+	cp -f /vagrant/resources/kafka/start-kafka.sh /usr/local/kafka
+	cp -f /vagrant/resources/kafka/stop-kafka.sh /usr/local/kafka
 	mkdir -p /usr/local/kafka/logs
 }
 

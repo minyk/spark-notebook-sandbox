@@ -19,7 +19,7 @@ function setupHosts {
 	echo "modifying /etc/hosts file"
 	for i in $(seq 1 $TOTAL_NODES)
 	do 
-		entry="10.10.10.10${i} node${i}.example.com"
+		entry="10.10.10.10${i} spark-notebook${i}.example.com"
 		echo "adding ${entry}"
 		echo "${entry}" >> /etc/nhosts
 	done

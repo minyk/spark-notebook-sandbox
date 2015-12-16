@@ -15,7 +15,7 @@ HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOO
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 
 #spark
-SPARK_VERSION=1.5.1
+SPARK_VERSION=1.5.2
 SPARK_ARCHIVE=spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
 SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}
 SPARK_RES_DIR=/vagrant/resources/spark
@@ -54,7 +54,7 @@ CASSANDRA_HOME=/usr/local/cassandra
 CASSANDRA_CONF=${CASSANDRA_HOME}/conf
 
 #spark-notebook
-SPARKNOTEBOOK_VERSION=0.6.1
+SPARKNOTEBOOK_VERSION=0.6.2
 SCALA_VERSION=2.10.4
 SPARKNOTEBOOK_NAME=spark-notebook-${SPARKNOTEBOOK_VERSION}-scala-${SCALA_VERSION}-spark-${SPARK_VERSION}-hadoop-${HADOOP_VERSION}-with-hive-with-parquet
 SPARKNOTEBOOK_ARCHIVE=${SPARKNOTEBOOK_NAME}.tgz

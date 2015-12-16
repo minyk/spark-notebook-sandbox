@@ -27,6 +27,7 @@
 source /etc/profile.d/java.sh
 source /etc/profile.d/hadoop.sh
 source /etc/profile.d/spark.sh
+source /etc/profile.d/kafka.sh
 source /etc/profile.d/spark-notebook.sh
 
 function start_hdfs() {
@@ -78,12 +79,12 @@ function stop_sparknotebook() {
     pkill -pidfile /usr/local/spark-notebook/RUNNING_PID
 }
 
-function startKafka {
-    EXEC_PATH=${KAFKA_HOME}/bin
-    ZOOKEEPER_EXEC_PATH=${EXEC_PATH}/zookeeper-server-start.sh
-    KAFKA_EXEC_PATH=${EXEC_PATH}/kafka-server-start.sh
-    nohup $ZOOKEEPER_EXEC_PATH $KAFKA_CONF/zookeeper.properties > $LOG_FILE 2>&1 < /dev/null & "'echo $! '"> $PIDFILE
-    nohup $KAFKA_EXEC_PATH $KAFKA_CONF/server.properties > $LOG_FILE 2>&1 < /dev/null & "'echo $! '"> $PIDFILE
+function start_kafka {
+    $KAFKA_HOME/start-kafka.sh
+}
+
+function stop_kafka {
+    $KAFKA_HOME/stop-kafka.sh
 }
 
 start() {
@@ -91,10 +92,12 @@ start() {
     #start_yarn
     start_spark
     start_sparknotebook
+    start_kafka
 	return 0
 }
 
 stop() {
+    stop_kafka
     stop_sparknotebook
     stop_spark
     #stop_yarn

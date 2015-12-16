@@ -17,7 +17,7 @@ function setupSlaves {
 	echo "modifying spark slaves"
 	for i in $(seq $START $TOTAL_NODES)
 	do 
-		entry="node${i}.example.com"
+		entry="spark-notebook${i}.example.com"
 		echo "adding ${entry}"
 		echo "${entry}" >> $SPARK_CONF_DIR/slaves
 	done

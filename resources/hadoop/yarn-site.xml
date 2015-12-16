@@ -33,18 +33,18 @@
     -->
     <property>
         <name>yarn.log.server.url</name>
-        <value>http://node1.example.com:19888/jobhistory/logs/</value>
+        <value>http://spark-notebook1.example.com:19888/jobhistory/logs/</value>
     </property>
     <property>
         <name>yarn.web-proxy.address</name>
-        <value>node1.example.com:8089</value>
+        <value>spark-notebook1.example.com:8089</value>
     </property>
     <property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>node1.example.com</value>
+        <value>spark-notebook1.example.com</value>
     </property>
     <property>
         <name>yarn.timeline-service.hostname</name>
-        <value>node1.example.com</value>
+        <value>spark-notebook1.example.com</value>
     </property>
 </configuration>

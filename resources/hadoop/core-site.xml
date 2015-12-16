@@ -19,6 +19,6 @@
 <configuration>
  <property>
   <name>fs.defaultFS</name>
-  <value>hdfs://node1.example.com</value>
+  <value>hdfs://spark-notebook1.example.com</value>
  </property>
 </configuration>

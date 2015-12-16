@@ -24,7 +24,7 @@
       "customImports" : null,
       "customSparkConf" : {
         "spark.app.name" : "Notebook",
-        "spark.master" : "spark://node1.example.com:7077",
+        "spark.master" : "spark://spark-notebook1.example.com:7077",
         "spark.executor.memory" : "2G"
       }
     }

@@ -31,11 +31,11 @@ function setupHosts {
 	for i in $(seq 1 $TOTAL_NODES)
 	do 
 		if [ $i -lt 10 ]; then
-			entry="10.10.10.10${i} node${i}.example.com"
+			entry="10.10.10.10${i} spark-notebook${i}.example.com"
 		elif [ $ i < 100 ]; then
-			entry="10.10.10.1${i} node${i}.example.com"
+			entry="10.10.10.1${i} spark-notebook${i}.example.com"
 		else
-			entry="10.10.10.${i} node${i}.example.com"
+			entry="10.10.10.${i} spark-notebook${i}.example.com"
 		fi
 		echo "adding ${entry}"
 		echo "${entry}" >> /etc/hosts
@@ -53,7 +53,7 @@ function sshCopyId {
 	echo "executing ssh-copy-id"
 	for i in $(seq $START $TOTAL_NODES)
 	do 
-		node="node${i}.example.com"
+		node="spark-notebook${i}.example.com"
 		echo "copy ssh key to ${node}"
 		ssh-copy-id -i ~/.ssh/id_rsa.pub ${node}
 	done
