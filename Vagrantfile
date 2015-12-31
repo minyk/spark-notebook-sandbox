@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			node.vm.provider "virtualbox" do |v|
 			  v.name = "spark-notebook#{i}"
 			  v.customize ["modifyvm", :id, "--memory", "4096"]
-			  v.customize ["modifyvm", :id, "--cpus", 2]
+			  v.customize ["modifyvm", :id, "--cpus", 1]
 			end
 
 			node.vm.network :private_network, ip: "10.10.10.1%02d" % i
