@@ -13,6 +13,7 @@ HADOOP_VERSION=2.7.1
 HADOOP_ARCHIVE=hadoop-${HADOOP_VERSION}.tar.gz
 HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/${HADOOP_ARCHIVE}
 HADOOP_RES_DIR=/vagrant/resources/hadoop
+HDFS_USER="hdfs"
 
 #spark
 SPARK_VERSION=1.5.2

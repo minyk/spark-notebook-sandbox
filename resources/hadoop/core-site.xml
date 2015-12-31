@@ -19,6 +19,6 @@
 <configuration>
  <property>
   <name>fs.defaultFS</name>
-  <value>hdfs://spark-notebook1.example.com</value>
+  <value>hdfs://spark-notebook1.example.com:8020</value>
  </property>
 </configuration>

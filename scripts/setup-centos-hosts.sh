@@ -4,6 +4,7 @@
 # http://www.cyberciti.biz/faq/bash-for-loop/
 # https://docs.vagrantup.com/v2/provisioning/shell.html
 # http://www.cyberciti.biz/faq/bash-prepend-text-lines-to-file/
+# http://stackoverflow.com/questions/30012822/cannot-assign-requested-address
 source "/vagrant/scripts/common.sh"
 TOTAL_NODES=2
 
@@ -18,13 +19,17 @@ done
 function setupHosts {
 	echo "modifying /etc/hosts file"
 	for i in $(seq 1 $TOTAL_NODES)
-	do 
-		entry="10.10.10.10${i} spark-notebook${i}.example.com"
-		echo "adding ${entry}"
-		echo "${entry}" >> /etc/nhosts
+	do
+    	echo "127.0.0.1   spark-notebook${i}.example.com localhost localhost.localdomain localhost4 localhost4.localdomain4" > /etc/nhosts
+	    echo "::1         localhost localhost.localdomain localhost6 localhost6.localdomain6" >> /etc/nhosts
+	    for j in $(seq 1 $TOTAL_NODES)
+	    do
+    		entry="10.10.10.10${j} spark-notebook${j}.example.com"
+	    	echo "adding ${entry}"
+		    echo "${entry}" >> /etc/nhosts
+        done
 	done
-	echo "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4" >> /etc/nhosts
-	echo "::1         localhost localhost.localdomain localhost6 localhost6.localdomain6" >> /etc/nhosts
+
 	#cat /etc/hosts >> /etc/nhosts
 	cp /etc/nhosts /etc/hosts
 	rm -f /etc/nhosts
