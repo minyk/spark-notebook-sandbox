@@ -23,6 +23,12 @@ function setupSpark {
 	cp -f /vagrant/resources/spark/fairscheduler.xml /usr/local/spark/conf
 }
 
+function setupUser {
+    echo "creating spark user"
+    getent group spark >/dev/null || groupadd -r spark
+    getent passwd spark >/dev/null || useradd -c "SPARK" -g spark spark 2> /dev/null || :
+}
+
 function setupEnvVars {
 	echo "creating spark environment variables"
 	cp -f $SPARK_RES_DIR/spark.sh /etc/profile.d/spark.sh
@@ -34,12 +40,13 @@ function installSpark {
 	else
 		installRemoteSpark
 	fi
-        chown -R root:root /usr/local/spark-${SPARK_VERSION}-bin-hadoop2.6
+        chown -R $SPARK_USER:root /usr/local/spark-${SPARK_VERSION}-bin-hadoop2.6
 	ln -s /usr/local/spark-${SPARK_VERSION}-bin-hadoop2.6 /usr/local/spark
 }
 
 echo "setup spark"
 
+setupUser
 installSpark
 setupSpark
 setupEnvVars

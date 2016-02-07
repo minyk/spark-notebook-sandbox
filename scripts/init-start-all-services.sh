@@ -21,15 +21,26 @@ function startYarn {
 	echo "started yarn"
 }
 
+function createHDFSDir {
+    su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -mkdir /user"
+    su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -mkdir /user/root"
+    su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -chown root /user/root"
+    su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -mkdir /user/spark"
+    su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -chown spark /user/spark"
+	su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -mkdir /apps"
+}
+
 function createEventLogDir {
 	su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -mkdir /tmp"
 	su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -mkdir /tmp/spark-events"
+	su -s /bin/bash $HDFS_USER -c "$HADOOP_PREFIX/bin/hdfs dfs -chmod -R 1777 /tmp"
 	echo "created spark event log dir"
 }
 
 function startSpark {
-	$SPARK_HOME/sbin/start-all.sh
-	$SPARK_HOME/sbin/start-history-server.sh
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/start-master.sh"
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/start-slave.sh spark://spark-notebook1.example.com:7077"
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/start-history-server.sh"
 	echo "started spark"
 }
 
@@ -52,6 +63,7 @@ function setupServices {
 formatNameNode
 startHDFS
 #startYarn
+createHDFSDir
 createEventLogDir
 startSpark
 startSparknotebook

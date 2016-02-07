@@ -1,27 +1,21 @@
 #!/bin/bash
 #
-#       /etc/rc.d/init.d/<servicename>
+# Starts a Spark-Notebook Server
 #
-#       <description of the *service*>
-#       <any general comments about this init script>
+# chkconfig: 345 90 10
+# description: hdfs,spark,spark-notebook
 #
-# <tags -- see below for tag definitions.  *Every line* from the top
-#  of the file to the end of the tags section must begin with a #
-#  character.  After the tags section, there should be a blank line.
-#  This keeps normal comments in the rest of the file from being
-#  mistaken for tags, should they happen to fit the pattern.>
-
-# Source function library.
 ### BEGIN INIT INFO
-# Provides: iptables
+# Provides: start-all-services
 # Required-Start:
 # Required-Stop:
-# Default-Start: 2 3 4 5
-# Default-Stop: 0 1 6
+# Default-Start: 3 4 5
+# Default-Stop: 0 1 2 6
 # Short-Description: start and stop hadoop/spark
 # Description: Start, stop hadoop/spark
 ### END INIT INFO
 
+# Source function library.
 . /etc/init.d/functions
 
 source /etc/profile.d/java.sh
@@ -59,14 +53,16 @@ function stop_yarn() {
 }
 
 function start_spark() {
-	$SPARK_HOME/sbin/start-all.sh
-	$SPARK_HOME/sbin/start-history-server.sh
+    su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/start-master.sh"
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/start-slave.sh spark://spark-notebook1.example.com:7077"
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/start-history-server.sh"
 	echo "started spark"
 }
 
 function stop_spark() {
-	$SPARK_HOME/sbin/stop-all.sh
-	$SPARK_HOME/sbin/stop-history-server.sh
+    su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/stop-master.sh"
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/stop-slave.sh"
+	su -s /bin/bash $SPARK_USER -c "$SPARK_HOME/sbin/stop-history-server.sh"
 	echo "stopped spark"
 }
 
@@ -76,15 +72,18 @@ function start_sparknotebook() {
 }
 
 function stop_sparknotebook() {
-    pkill -pidfile /usr/local/spark-notebook/RUNNING_PID
+    killproc -pidfile /usr/local/spark-notebook/RUNNING_PID java
+    echo "stopped spark-notebook"
 }
 
 function start_kafka {
     $KAFKA_HOME/start-kafka.sh
+    echo "started kafka"
 }
 
 function stop_kafka {
     $KAFKA_HOME/stop-kafka.sh
+    echo "stopped kafka"
 }
 
 start() {
