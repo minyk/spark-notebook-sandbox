@@ -11,7 +11,8 @@
       "customSparkConf" : {
         "spark.app.name" : "Notebook",
         "spark.master" : "spark://spark-notebook1.example.com:7077",
-        "spark.executor.memory" : "2G"
+        "spark.executor.memory" : "2G",
+        "spark.driver.host": "10.10.10.101"
       }
     }
   },
