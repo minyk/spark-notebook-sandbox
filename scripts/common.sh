@@ -45,6 +45,7 @@ KAFKA_MIRROR_DOWNLOAD=http://www.apache.org/dist/kafka/${KAFKA_VERSION}/${KAFKA_
 KAFKA_RES_DIR=/vagrant/resources/kafka
 KAFKA_HOME=/usr/local/kafka
 KAFKA_CONF=${KAFKA_HOME}/conf
+KAFKA_USER="kafka"
 
 #Cassandra
 CASSANDRA_VERSION=2.1.10

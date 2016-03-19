@@ -50,7 +50,7 @@ function startSparknotebook {
 }
 
 function startKafka {
-    $KAFKA_HOME/start-kafka.sh
+    su -s /bin/bash $KAFKA_USER -c "$KAFKA_HOME/start-kafka.sh"
     echo "started kafka"
 }
 

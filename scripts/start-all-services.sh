@@ -77,12 +77,12 @@ function stop_sparknotebook() {
 }
 
 function start_kafka {
-    $KAFKA_HOME/start-kafka.sh
+    su -s /bin/bash $KAFKA_USER -c "$KAFKA_HOME/start-kafka.sh"
     echo "started kafka"
 }
 
 function stop_kafka {
-    $KAFKA_HOME/stop-kafka.sh
+    su -s /bin/bash $KAFKA_USER -c "$KAFKA_HOME/stop-kafka.sh"
     echo "stopped kafka"
 }
 

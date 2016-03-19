@@ -7,3 +7,5 @@ export KAFKA_LOG_FILE=${LOG_DIR}/kafka.log
 
 export ZK_PID_FILE=${KAFKA_HOME}/zookeeper.pid
 export KAFKA_PID_FILE=${KAFKA_HOME}/kafka.pid
+
+export KAFKA_USER="kafka"
