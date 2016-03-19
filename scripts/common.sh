@@ -9,14 +9,14 @@ JAVA_HOME="jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}"
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
-HADOOP_VERSION=2.7.1
+HADOOP_VERSION=2.7.2
 HADOOP_ARCHIVE=hadoop-${HADOOP_VERSION}.tar.gz
 HADOOP_MIRROR_DOWNLOAD=http://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/${HADOOP_ARCHIVE}
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 HDFS_USER="hdfs"
 
 #spark
-SPARK_VERSION=1.5.2
+SPARK_VERSION=1.6.1
 SPARK_ARCHIVE=spark-${SPARK_VERSION}-bin-hadoop2.6.tgz
 SPARK_MIRROR_DOWNLOAD=http://www.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}
 SPARK_RES_DIR=/vagrant/resources/spark
@@ -56,8 +56,8 @@ CASSANDRA_HOME=/usr/local/cassandra
 CASSANDRA_CONF=${CASSANDRA_HOME}/conf
 
 #spark-notebook
-SPARKNOTEBOOK_VERSION=0.6.2
-SCALA_VERSION=2.10.4
+SPARKNOTEBOOK_VERSION=0.6.3
+SCALA_VERSION=2.10.5
 SPARKNOTEBOOK_NAME=spark-notebook-${SPARKNOTEBOOK_VERSION}-scala-${SCALA_VERSION}-spark-${SPARK_VERSION}-hadoop-${HADOOP_VERSION}-with-hive-with-parquet
 SPARKNOTEBOOK_ARCHIVE=${SPARKNOTEBOOK_NAME}.tgz
 SPARKNOTEBOOK_MIRROR_DOWNLOAD=https://s3.eu-central-1.amazonaws.com/spark-notebook/tgz/${SPARKNOTEBOOK_ARCHIVE}

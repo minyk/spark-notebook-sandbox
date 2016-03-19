@@ -3,7 +3,7 @@ Sandbox for Spark-Notebook
 
 # Introduction
 
-Vagrant project to spin up a cluster of 1 virtual machine with Hadoop v2.7.1, Spark v1.5.0 and Spark-Notebook 0.6.1
+Vagrant project to spin up a cluster of 1 virtual machine with Hadoop v2.7.2, Spark v1.6.1 and Spark-Notebook 0.6.3
 
 * [Hadoop](http://hadoop.apache.org)
 * [Spark](http://spark.apache.org)
